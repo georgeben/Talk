@@ -41,7 +41,7 @@ export default {
     name: 'chat-dashboard',
     computed: {
         ...mapState(['loading'])
-    }.
+    },
     components: {
         ChatNavBar,
         RoomList,

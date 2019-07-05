@@ -18,7 +18,7 @@ export default new Vuex.Store({
         loading: false,
         sending: false,
         error: null,
-        user: [],
+        user: {},
         reconnect: false,
         activeRoom: null,
         rooms: [],

@@ -1,6 +1,7 @@
 import chatkit from '../chatkit'
 
 const handleError = (commit, error) => {
+    console.log(error)
     const message = error.message || error.info.error_description;
     commit('setError', message)
 }
@@ -46,5 +47,14 @@ export default {
         } finally {
             commit('setLoading', false)
         }
-    }
+    },
+    
+    async changeRoom({ commit }, roomId) {
+        try {
+          const { id, name } = await chatkit.subscribeToRoom(roomId);
+          commit('setActiveRoom', { id, name });
+        } catch (error) {
+          handleError(commit, error)
+        }
+      }
 }

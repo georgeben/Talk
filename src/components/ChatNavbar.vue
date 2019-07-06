@@ -11,11 +11,30 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 export default {
     name: 'chat-navbar',
     computed: {
-        ...mapState(['user'])
+        ...mapState(['user', 'reconnect'])
+    },
+    methods: {
+      ...mapActions(['login', 'logout']),
+      ...mapMutations(['setReconnect']),
+      onLogout(){
+        this.router.push('login')
+        this.logout()
+      },
+      unload(){
+        if(this.user.username){
+          this.setReconnect(true)
+        }
+      }
+    },
+    mounted(){
+      window.addEventListener('beforeunload', this.unload)
+      if(this.reconnect){
+        this.login(this.user.username)
+      }
     }
 }
 </script>

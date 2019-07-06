@@ -39,9 +39,9 @@ export default {
         state.userTyping = userId
     },
     reset(state){
-        stat.error = null;
+        state.error = null;
         state.user = null;
-        stat.users = []
+        state.users = []
         state.messages = [];
         state.rooms = []
     }

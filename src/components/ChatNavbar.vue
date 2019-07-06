@@ -5,7 +5,7 @@
     </b-navbar-brand>
     <b-navbar-nav class="ml-auto">
       <b-nav-text>{{ user.name }} | </b-nav-text>
-      <b-nav-item href="#" active>Logout</b-nav-item>
+      <b-nav-item href="#" active @click="onLogout">Logout</b-nav-item>
     </b-navbar-nav>
   </b-navbar>
 </template>
@@ -21,7 +21,9 @@ export default {
       ...mapActions(['login', 'logout']),
       ...mapMutations(['setReconnect']),
       onLogout(){
-        this.router.push('login')
+        this.$router.push({
+          path: '/'
+        })
         this.logout()
       },
       unload(){

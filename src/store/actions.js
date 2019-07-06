@@ -74,6 +74,6 @@ export default {
     async logout({ commit }){
         commit('reset')
         chatkit.disconnectUser()
-        window.localStorage.removeItem('vuex')
+        window.localStorage.clear()
     }
 }

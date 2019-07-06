@@ -48,13 +48,32 @@ export default {
             commit('setLoading', false)
         }
     },
-    
-    async changeRoom({ commit }, roomId) {
+
+    async changeRoom({ commit }, roomId){
         try {
           const { id, name } = await chatkit.subscribeToRoom(roomId);
           commit('setActiveRoom', { id, name });
         } catch (error) {
           handleError(commit, error)
         }
-      }
+      },
+
+    async sendMessage({ commit }, message){
+        try {
+            commit('setError', '')
+            commit('setSending', true)
+            let messageId = await chatkit.sendMessage(message)
+            return messageId
+        } catch(error) {
+            handleError(error)
+        } finally {
+            commit('setSending', false)
+        }
+    },
+
+    async logout({ commit }){
+        commit('reset')
+        chatkit.disconnectUser()
+        window.localStorage.removeItem('vuex')
+    }
 }

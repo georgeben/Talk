@@ -25,7 +25,7 @@ import { mapState } from 'vuex'
 export default {
     name: 'message-list',
     computed: {
-        ...mapState(['messages'])
+        ...mapState(['messages', 'userTyping'])
     }
 }
 </script>

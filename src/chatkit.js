@@ -67,7 +67,24 @@ const subscribeToRoom = async (roomId) => {
     return activeRoom
 }
 
+const sendMessage = async (text) => {
+    let messageId = await currentUser.sendMessage({
+        text,
+        roomId: activeRoom.id
+    })
+
+    return messageId
+}
+
+export const isTyping = (roomId) => {
+    currentUser.isTypingIn({roomId})
+}
+
+const disconnectUser = () => currentUser.disconnect()
+
 export default {
     connectUser,
-    subscribeToRoom
+    subscribeToRoom,
+    sendMessage,
+    disconnectUser
 }

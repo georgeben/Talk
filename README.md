@@ -1,4 +1,6 @@
-# talk
+# Talk
+
+An instant messaging and chat room application built with Vue.js and Pusher
 
 ## Project setup
 ```
